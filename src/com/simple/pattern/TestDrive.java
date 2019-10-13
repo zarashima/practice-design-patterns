@@ -4,8 +4,10 @@ import builder.AlertDialog;
 import decorator.Chicken;
 import decorator.Pizza;
 import decorator.Vegan;
+import template.Meal;
+import template.Steak;
 
-public class Test {
+public class TestDrive {
 
     public static void main(String[] args) {
         // Builder
@@ -21,5 +23,9 @@ public class Test {
         Pizza veganPizzaDecor = new Vegan();
         veganPizzaDecor = new Chicken(veganPizzaDecor);
         System.out.println(veganPizzaDecor.getDescription());
+
+        //Template
+        Meal steak = new Steak();
+        steak.doMeal();
     }
 }
