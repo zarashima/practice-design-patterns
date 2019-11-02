@@ -4,28 +4,23 @@ import builder.AlertDialog;
 import decorator.Chicken;
 import decorator.Pizza;
 import decorator.Vegan;
+import observer.YoutubeChannel;
+import observer.YoutubeSubscriber;
 import template.Meal;
 import template.Steak;
 
 public class TestDrive {
 
     public static void main(String[] args) {
-        // Builder
-        AlertDialog twoButtonsDialog = new AlertDialog.Builder()
-                .setTitle("Two buttons dialog")
-                .setText("You can use either `Okay` or `Cancel`")
-                .setApplyButton("Okay")
-                .setCancelButton("Cancel")
-                .build();
-        System.out.println(twoButtonsDialog);
-
-        //Decorator
-        Pizza veganPizzaDecor = new Vegan();
-        veganPizzaDecor = new Chicken(veganPizzaDecor);
-        System.out.println(veganPizzaDecor.getDescription());
-
-        //Template
-        Meal steak = new Steak();
-        steak.doMeal();
+        YoutubeChannel youtubeChannel = new YoutubeChannel();
+        YoutubeSubscriber subscriberA = new YoutubeSubscriber(youtubeChannel);
+        YoutubeSubscriber subscriberB = new   YoutubeSubscriber(youtubeChannel);
+        YoutubeSubscriber subscriberC = new YoutubeSubscriber(youtubeChannel);
+        youtubeChannel.addObserver(subscriberA);
+        youtubeChannel.addObserver(subscriberB);
+        youtubeChannel.addObserver(subscriberC);
+        youtubeChannel.releaseNewVideo("Design Patterns : Factory Method");
+        youtubeChannel.releaseNewVideo("Design Patterns : Proxy");
+        youtubeChannel.releaseNewVideo("Design Patterns : Visitor");
     }
 }
